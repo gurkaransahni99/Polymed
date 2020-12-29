@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>POLYMED_HOMEPAGE</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+<style type="text/css">
+    
+.text-container{
+    margin:25px;
+    padding:25px;
+    background-color: #fff !important;
+}
+.text-border{
+    border-right: 2px solid #999;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .text-border{
+    border-right: 0px solid #999;
+
+}
+}
+
+</style>
+
+
+</head>
+    
+<body>
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p><br></p>
+            <li class="active">
+            <a class="text-center" href="#" >Dashboard</a>
+            </li>
+            <li>
+            <a class="text-center" href="#">About</a>
+            </li>
+            <li>
+            <a class="text-center" href="#">Pages</a>
+            </li>
+            <li>
+            <a class="text-center" href="#">Portfolio</a>
+            </li>
+            <li>
+            <a class="text-center" href="#">Contact</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <div id="content">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn btn-lg">
+                    <i class="glyphicon glyphicon-menu-hamburger "></i>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-left: 40px; margin-right:40px;">
+        <div class="text-container">
+        <div class="row">
+            <div style="padding-top: 7%;" class="text-center col-lg-2 col-md-6 ">
+                <p><b>TOTAL</b></p>
+                <p style="font-size: 100px;">10</p>
+            </div>
+            <div style="padding-top: 7%;" class="text-center col-lg-2 col-md-6 ">
+                <p style="color:green"><b>ON TIME</b></p>
+                <p style="font-size: 100px;">7</p>
+            </div>
+            
+            <div class="text-center col-lg-4 col-md-6 ">
+                <p id="donutchart" style="width: 100%; height: 350px;"></p  >
+            </div>
+
+            <div style="padding-top: 7%;" class="text-center col-lg-2 col-md-6 ">
+                <p style="color:orange"><b>DELAYED</b></p>
+                <p style="font-size: 100px;">2</p>
+            </div>
+            <div style="padding-top: 7%;" class="text-center col-lg-2 col-md-6">
+                <p style="color:red"><b>BAD ACCOUNT</b> </p>
+                <p style="font-size: 100px;">1</p>
+            </div>
+        </div>
+        </div>        
+    </div> 
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#dismiss, .overlay').on('click', function () {
+        $('#sidebar').removeClass('active');
+        $('.overlay').fadeOut();
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').addClass('active');
+        $('.overlay').fadeIn();
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
+
+</script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Products Assigned'],
+          ['ON TIME',7],
+          ['DELAYED',2],
+          ['BAD ACCOUNT',1],
+
+        ]);
+
+        var options = {
+            legend: 'none',
+          pieHole: 0.6,
+            colors: ['green','orange','red'],
+                      pieSliceText: 'hello',
+                      is3D: true
+
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+</body>
+
+</html>
